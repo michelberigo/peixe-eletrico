@@ -1,0 +1,15 @@
+<%= javascript_pack_tag 'posts/posts.js' %>
+
+<% if !notice.nil? %>
+  <div class="alert alert-success"><%= notice %></div>
+<% end %>
+
+<h1>O que há de novo?</h1>
+
+<div class="mb-4">
+  <% if user_signed_in? %>
+    <%= link_to 'Nova Postagem', new_post_path, class: 'btn btn-primary' %>
+  <% end %>
+</div>
+
+<%= render 'shared/posts' %>

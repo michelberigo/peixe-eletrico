@@ -1,0 +1,17 @@
+<% @post.comments.each do |comment| %>
+  <div class="card mb-3">
+    <div class="card-header">
+      <strong><%= comment.usuario_email %></strong><span class="text-muted"> comentou em <%= comment.created_at.strftime("%d/%m/%Y") %> às <%= comment.created_at.strftime("%H:%M:%S") %></span>
+    </div>
+
+    <div class="card card-body">
+      <%= comment.comentario %>
+    </div>
+
+    <% if user_signed_in? %>
+      <div class="card-footer text-right">
+        <%= link_to 'Apagar', post_comment_path(comment.post, comment), method: :delete, data: { confirm: 'Você deseja realmente excluir este item?' }, class: 'btn btn-danger btn-sm' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

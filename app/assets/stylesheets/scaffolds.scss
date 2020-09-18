@@ -1,0 +1,26 @@
+body {
+  background-color: #fff;
+  color: #333;
+  margin: 33px;
+}
+
+.post-link, .post-link:hover, .link-normal, .link-normal:hover {
+  color: inherit;
+}
+
+.blog-post .blog-post-title {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  margin-bottom: .25rem;
+  font-size: 2.5rem;
+}
+
+.blog-post-meta {
+  margin-bottom: 1.25rem;
+  color: #999;
+}
+
+.blog-comment-header {
+  margin: 0.5em 0 0;
+  font-size: 16px;
+  color: #666;
+}
