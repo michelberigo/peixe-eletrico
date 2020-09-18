@@ -1,0 +1,60 @@
+<footer class="footer bg-dark">
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-md-4 px-5">
+                <h5 class="text-uppercase text-center text-light">Sobre</h5>
+
+                <p class="footer-description">
+                    O Peixe Elétrico é um blog sem fins lucrativos, buscando alcançar todas as pessoas ao redor do 
+                    Planeta. Seja muito bem-vindo ao blog!
+                </p>
+            </div>
+
+            <div class="col-md-4 px-5">
+                <h5 class="text-uppercase text-center text-light">Redes Sociais</h5>
+
+                <p class="footer-description">
+                    Encontre o criador do projeto pelas redes sociais abaixo.
+                </p>
+
+                <div class="text-center">
+                    <a href="https://www.facebook.com/michel.berigo.3" target="_blank" title="Facebook" class="font-awesome-link text-decoration-none">
+                        <%= fa_stacked_icon "facebook inverse", base: "circle", class: "fa-2x" %>
+                    </a>
+
+                    <a href="https://twitter.com/michel_berigo" target="_blank" title="Twitter" class="font-awesome-link text-decoration-none">
+                        <%= fa_stacked_icon "twitter inverse", base: "circle", class: "fa-2x" %>
+                    </a>
+
+                    <a href="https://www.instagram.com/michelberigo" target="_blank" title="Instagram" class="font-awesome-link text-decoration-none">
+                        <%= fa_stacked_icon "instagram inverse", base: "circle", class: "fa-2x" %>
+                    </a>
+
+                    <a href="https://br.linkedin.com/in/michel-berigo-bb11a816b" target="_blank" title="LinkedIn" class="font-awesome-link text-decoration-none">
+                        <%= fa_stacked_icon "linkedin inverse", base: "circle", class: "fa-2x" %>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-md-4 px-5">
+                <h5 class="text-uppercase text-center text-light">Newsletter</h5>
+
+                <p class="footer-description">
+                    Deseja receber um e-mail sempre que houver uma nova postagem? Inscreva-se agora mesmo!
+                </p>
+
+                <%= form_tag(newsletters_path, method: "POST") do %>
+                    <div class="input-group">
+                        <%= email_field_tag :email, '', class: 'form-control', placeholder: 'Digite seu e-mail' %>
+
+                        <div class="input-group-append">
+                            <%= button_tag(type: "submit", class: "btn btn-success", value: 'newsletter') do %>
+                                <%= fa_icon "send" %>
+                            <% end %>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :newsletters
   mount Ckeditor::Engine => '/ckeditor'
   root to: 'posts#index'
   
