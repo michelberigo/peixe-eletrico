@@ -1,0 +1,49 @@
+<div class="left-sidebar">
+    <div class="p-3 bg-light">
+        <div id="sidebar-header" class="mb-5">
+            <h2 class="font-italic"><%= link_to "Peixe Elétrico", root_path, class: 'link-normal text-decoration-none' %></b></h2>
+
+            <p>O blog mais eletrizante da internet.</p>
+        </div>
+
+        <div id="sidebar-pesquisa" class="mb-5">
+            <h4 class="font-italic">Procurando algo?</h4>
+
+            <%= form_tag(posts_path, method: "GET") do %>
+                <div class="input-group">
+                    <%= text_field_tag :search, params[:search], class: 'form-control' %>
+
+                    <div class="input-group-append">
+                        <%= button_tag(type: "submit", class: "btn btn-dark", value: 'search') do %>
+                            <%= fa_icon "search" %>
+                        <% end %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+
+        <div id="sidebar-arquivos" class="mb-5">
+            <h4 class="font-italic">Arquivos</h4>
+
+            <ol class="list-unstyled">
+                <% @mesesPostagens.each do |mes, posts| %>
+                    <li>
+                        <%= link_to "#{l(mes, format: '%B - %Y')} (#{posts.count})", posts_mes_path(:year=> mes.year, :month => mes.month), class: 'text-decoration-none' %>
+                    </li>
+                <% end %>
+            </ol>
+        </div>
+
+        <% if user_signed_in? %>
+            <div id="sidebar-logout">
+                <ul class="list-unstyled">
+                    <h5 class="font-italic">Deseja sair?</h5>
+                    <li>
+                        <%= fa_icon "sign-out" %>
+                        <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'link-normal text-decoration-none') %>        
+                    </li>
+                </ul>
+            </div>
+        <% end %>
+    </div>
+</div>

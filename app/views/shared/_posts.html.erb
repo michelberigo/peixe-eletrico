@@ -1,0 +1,26 @@
+<% @posts.each_slice(1) do |row| %>
+  <div class="row mb-4">
+    <% row.each do |post| %>
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <%= link_to post, class: 'post-link text-decoration-none' do %>
+              <h5 class="card-title"><%= post.titulo %></h5>
+              <p class="card-subtitle mb-2 text-muted">Criado em: <%= post.created_at.strftime("%d/%m/%Y") %> às <%= post.created_at.strftime("%H:%M:%S") %> por <%= post.user.email %></p>
+              <div class="card-text post-descricao"><%= raw post.descricao %></div>
+            <% end %>
+          </div>
+
+          <% if user_signed_in? %>
+            <div class="card-footer text-right">
+              <%= link_to 'Editar', edit_post_path(post), class: 'btn btn-info btn-sm' %>
+              <%= link_to 'Apagar', post, method: :delete, data: { confirm: 'Você deseja realmente excluir este item?' }, class: 'btn btn-danger btn-sm' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<%= will_paginate @posts, class: 'digg_pagination' %>

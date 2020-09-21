@@ -1,0 +1,25 @@
+<%= form_for [@post, @comment] do |f| %>
+  <% if @comment.errors.any? %>
+    <div class="alert alert-danger">
+      <ul class="list-unstyled">
+        <% @comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <label for="usuario_email">E-mail *</label>
+    <%= f.email_field :usuario_email, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <label for="comentario">Comentário *</label>
+    <%= f.text_area :comentario, class: 'form-control', rows: 3 %>
+  </div>
+
+  <div class="text-center">
+    <%= f.submit 'Enviar', class: 'btn btn-success' %>
+  </div>
+<% end %>

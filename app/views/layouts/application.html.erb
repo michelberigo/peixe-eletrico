@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Peixe Elétrico</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <main class="container-fluid mb-4">
+      <div class="row">
+        <div class="col-md-3">
+          <%= render "shared/left_sidebar" %>
+        </div>
+        
+        <div class="col-md-9">
+          <%= yield %>
+        </div>
+      </div>
+    </main>
+
+    <%= render "shared/footer" %>
+  </body>
+</html>

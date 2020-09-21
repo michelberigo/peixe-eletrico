@@ -1,0 +1,44 @@
+<% if !notice.nil? %>
+  <div class="alert alert-success"><%= notice %></div>
+<% end %>
+
+<div class="blog-post mb-5">
+    <h2 class="blog-post-title"><%= @post.titulo %></h2>
+    <p class="blog-post-meta">Criado em <%= l(@post.created_at, format: '%d de %B de %Y') %> por <%= @post.user.email %></p>
+
+    <hr>
+
+    <%= raw @post.descricao %>
+</div>
+
+<div class="row mb-4">
+    <div class="col-sm-6 text-left">
+        <%= link_to 'Voltar', posts_path, class: 'btn btn-dark' %>
+    </div>
+
+    <% if user_signed_in? %>
+        <div class="col-sm-6 text-right">
+            <%= link_to 'Editar', edit_post_path(@post), class: 'btn btn-info' %>
+        </div>
+    <% end %>
+</div>
+
+<div class="comentario-criar mb-3">
+    <h3 class="font-italic">O que achou? Deixe um comentário!</b></h3>
+
+    <hr>
+
+    <%= render 'comments/form' %>
+</div>
+
+<div class="comentarios">
+    <h3 class="font-italic">Comentários da galera</b></h3>
+
+    <hr>
+
+    <% if (@post.comments.count > 0) %>
+        <%= render 'comments/index' %>
+    <% else %>
+        <h6>Ainda não há comentários nesta postagem.</h6>
+    <% end %>
+</div>
