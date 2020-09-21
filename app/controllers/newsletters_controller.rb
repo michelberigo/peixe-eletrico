@@ -57,14 +57,17 @@ class NewslettersController < ApplicationController
   # DELETE /newsletters/1.json
   def destroy
     @newsletter.destroy
+
     respond_to do |format|
-      format.html { redirect_to newsletters_url, notice: 'Newsletter was successfully destroyed.' }
+      NewsletterMailer.with(newsletter: @newsletter).unsubscribe.deliver_later
+
+      format.html { redirect_to posts_url, notice: 'Você cancelou a inscrição com sucesso!' }
       format.json { head :no_content }
     end
   end
 
   def unsubscribe
-    abort params.inspect
+    @newsletter = Newsletter.find_by email: params[:email]
   end
 
   private

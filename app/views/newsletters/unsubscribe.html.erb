@@ -1,0 +1,9 @@
+<h1>Cancelar inscrição</h1>
+
+<%= image_tag("gato_triste.jpg", alt: "Gato Triste", height: '512', width: '384', class: "rounded mx-auto d-block img-fluid mb-4") %>
+
+<p>Poxa, ficamos tristes porque você quer se desinscrever do blog! Para prosseguir, clique no botão abaixo</p>
+
+<div class="text-center">
+    <%= link_to 'Cancelar minha inscrição', @newsletter, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger' %>
+</div>
