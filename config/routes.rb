@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   devise_for :users
 
   get 'posts_mes/:year/:month' => 'posts#posts_mes', as: :posts_mes
+  get 'newsletter/unsubscribe' => 'newsletters#unsubscribe'
 end

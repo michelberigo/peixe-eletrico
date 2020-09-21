@@ -28,10 +28,12 @@ class NewslettersController < ApplicationController
 
     respond_to do |format|
       if @newsletter.save
-        format.html { redirect_to @newsletter, notice: 'Newsletter was successfully created.' }
+        NewsletterMailer.with(newsletter: @newsletter).subscribe.deliver_later
+
+        format.html { redirect_to posts_path, notice: 'Inscrição realizada com sucesso!' }
         format.json { render :show, status: :created, location: @newsletter }
       else
-        format.html { redirect_to posts_path, alert: @newsletter }
+        format.html { redirect_to posts_path, alert: @newsletter.errors.full_messages.join(', ') }
         format.json { render json: @newsletter.errors, status: :unprocessable_entity }
       end
     end
@@ -61,6 +63,10 @@ class NewslettersController < ApplicationController
     end
   end
 
+  def unsubscribe
+    abort params.inspect
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_newsletter
@@ -69,6 +75,6 @@ class NewslettersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def newsletter_params
-      params.fetch(:newsletter, {})
+      params.permit(:email)
     end
 end
