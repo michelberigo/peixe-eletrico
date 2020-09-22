@@ -56,11 +56,10 @@ class NewslettersController < ApplicationController
   # DELETE /newsletters/1
   # DELETE /newsletters/1.json
   def destroy
+    NewsletterMailer.with(newsletter: @newsletter).unsubscribe.deliver_now
     @newsletter.destroy
 
     respond_to do |format|
-      NewsletterMailer.with(newsletter: @newsletter).unsubscribe.deliver_later
-
       format.html { redirect_to posts_url, notice: 'Você cancelou a inscrição com sucesso!' }
       format.json { head :no_content }
     end
