@@ -36,6 +36,12 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+        newsletters = Newsletter.all
+
+        newsletters.each do |newsletter|
+          PostMailer.with(newsletter: newsletter, post: @post).new_post.deliver_later
+        end
+
         format.html { redirect_to @post, notice: 'Postagem criada com sucesso!' }
         format.json { render :show, status: :created, location: @post }
       else
